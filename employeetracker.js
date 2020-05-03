@@ -6,7 +6,7 @@ const consoleTable= require("console.table");
 // connection to sql database
 const connection= mysql.createConnection({
         host: 'localhost',
-        port: 3306,
+        port: 8080,
         user: 'root',
         password: 'Khanshome1!',
         database: 'employee_db'
@@ -19,8 +19,7 @@ const connection= mysql.createConnection({
     
 function employeePage() {
        inquirer
-  .prompt([
-    {
+  .prompt({
       type: "list",
       message: "What would you like to do? ",
       name: "functions",
@@ -34,9 +33,9 @@ function employeePage() {
         "Update employee role",
         "exit"
 
-    ]}])})
-
-.then(function (answer) {})
+    ]})
+    
+.then(function (answer) {
 switch (answer.action) {
     case "View all employees":
             viewEmployees();
@@ -65,6 +64,8 @@ switch (answer.action) {
         default:
             break;
     }
+})
+})
 
     function viewEmployees() {
         var query = "SELECT * FROM employees";
